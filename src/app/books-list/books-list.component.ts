@@ -27,8 +27,10 @@ export class BooksListComponent implements OnInit {
     //   console.log(data);
     // });
 
-    this.booksApiService.getBeers().subscribe((data) => {
-      console.log(data);
-    });
+    this.booksService
+      .getObservableOfBooksList()
+      .subscribe((books: BookItem[]) => {
+        this.books = books;
+      });
   }
 }
