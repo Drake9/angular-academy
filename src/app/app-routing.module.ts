@@ -7,8 +7,11 @@ import { NotFoundComponent } from "./not-found/not-found.component";
 import { WelcomeComponent } from "./welcome/welcome.component";
 
 const routes: Routes = [
-  { path: "books", component: BooksListComponent },
-  // { path: "book/:id", component: BookDetailsComponent },
+  {
+    path: "books",
+    component: BooksListComponent,
+    children: [{ path: ":id", component: BookDetailsComponent }],
+  },
   { path: "categories", component: BookCategoriesComponent },
   { path: "", component: WelcomeComponent, pathMatch: "full" },
   { path: "**", component: NotFoundComponent },

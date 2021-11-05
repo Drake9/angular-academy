@@ -1,4 +1,6 @@
+import { BookItem } from "./../../models/book-item";
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Params } from "@angular/router";
 
 @Component({
   selector: "app-book-details",
@@ -6,7 +8,21 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./book-details.component.scss"],
 })
 export class BookDetailsComponent implements OnInit {
-  constructor() {}
+  book: BookItem;
+  constructor(private route: ActivatedRoute) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.listenForInitialBook();
+    this.bookListener();
+  }
+
+  private listenForInitialBook() {
+    const id = this.route.snapshot.params.id;
+  }
+
+  private bookListener() {
+    this.route.params.subscribe((params: Params) => {
+      // this.user.id = params["id"];
+    });
+  }
 }
