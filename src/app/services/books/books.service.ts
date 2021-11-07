@@ -1,7 +1,7 @@
-import { BookItem } from "../../models/book-item";
+import { BookItem } from "./../../models/book-item";
 import { Injectable } from "@angular/core";
 import { booksList } from "../../mocks/books-mock";
-import { from, Observable, of } from "rxjs";
+import { Observable, of } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -15,5 +15,9 @@ export class BooksService {
 
   getObservableOfBooksList(): Observable<BookItem[]> {
     return of(booksList);
+  }
+
+  getBook(id): BookItem {
+    return booksList.find((book) => book.id === id);
   }
 }

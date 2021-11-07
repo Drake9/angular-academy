@@ -1,6 +1,7 @@
+import { BooksService } from "./../../services/books/books.service";
 import { BookItem } from "./../../models/book-item";
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Params } from "@angular/router";
+import { ActivatedRoute, ParamMap } from "@angular/router";
 
 @Component({
   selector: "app-book-details",
@@ -8,21 +9,24 @@ import { ActivatedRoute, Params } from "@angular/router";
   styleUrls: ["./book-details.component.scss"],
 })
 export class BookDetailsComponent implements OnInit {
-  book: BookItem;
-  constructor(private route: ActivatedRoute) {}
+  selectedBook: BookItem;
+  constructor(
+    private route: ActivatedRoute,
+    private booksService: BooksService
+  ) {}
 
   ngOnInit() {
-    this.listenForInitialBook();
+    this.getInitialBookId();
     this.bookListener();
   }
 
-  private listenForInitialBook() {
+  private getInitialBookId() {
     const id = this.route.snapshot.params.id;
   }
 
   private bookListener() {
-    this.route.params.subscribe((params: Params) => {
-      // this.user.id = params["id"];
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.selectedBook = this.booksService.getBook(params.get("id"));
     });
   }
 }
