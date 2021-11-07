@@ -1,3 +1,5 @@
+<h2>Book List</h2>
+
 <ul>
   <li *ngFor="let book of books" [class.selected]="book.id === selectedId">
     <app-book-item [book]="book"></app-book-item>
