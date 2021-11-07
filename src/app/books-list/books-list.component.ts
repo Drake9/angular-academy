@@ -1,8 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
 import { Observable } from "rxjs";
 import { BookItem } from "../models/book-item";
-import { BooksApiService } from "../services/books-api/books-api.service";
+import { BeerService } from "../services/beer-api/beer.service";
 import { BooksService } from "../services/books/books.service";
 
 @Component({
@@ -15,28 +14,19 @@ export class BooksListComponent implements OnInit {
   books$: Observable<BookItem[]>;
   selectedId: number;
 
-  constructor(
-    private booksService: BooksService,
-    private booksApiService: BooksApiService,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private booksService: BooksService) {}
 
   ngOnInit() {
-
     this.getBooksList();
   }
 
   private getBooksList() {
-    // this.books = this.booksService.getBooksList();
+    this.books = this.booksService.getRawBooksList();
 
-    // this.booksApiService.getApiBooks().subscribe((data) => {
-    //   console.log(data);
-    // });
-
-    this.booksService
-      .getObservableOfBooksList()
-      .subscribe((books: BookItem[]) => {
-        this.books = books;
-      });
+    // this.booksService
+    //   .getObservableOfBooksList()
+    //   .subscribe((books: BookItem[]) => {
+    //     this.books = books;
+    //   });
   }
 }
