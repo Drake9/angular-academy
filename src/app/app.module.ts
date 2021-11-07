@@ -10,6 +10,8 @@ import { NotFoundComponent } from "./not-found/not-found.component";
 import { WelcomeComponent } from "./welcome/welcome.component";
 import { BookCategoriesComponent } from "./book-categories/book-categories.component";
 import { HttpClientModule } from "@angular/common/http";
+import { BeersListComponent } from "./beers-list/beers-list.component";
+import { ObservablesComponent } from "./observables/observables.component";
 
 @NgModule({
   declarations: [
@@ -21,12 +23,10 @@ import { HttpClientModule } from "@angular/common/http";
     NotFoundComponent,
     WelcomeComponent,
     BookCategoriesComponent,
+    BeersListComponent,
+    ObservablesComponent,
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-  ],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })

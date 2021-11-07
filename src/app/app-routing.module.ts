@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { BeersListComponent } from "./beers-list/beers-list.component";
 import { BookCategoriesComponent } from "./book-categories/book-categories.component";
 import { BookDetailsComponent } from "./books-list/book-details/book-details.component";
 import { BooksListComponent } from "./books-list/books-list.component";
@@ -13,6 +14,7 @@ const routes: Routes = [
     children: [{ path: ":id", component: BookDetailsComponent }],
   },
   { path: "categories", component: BookCategoriesComponent },
+  { path: "beers", component: BeersListComponent },
   { path: "", component: WelcomeComponent, pathMatch: "full" },
   { path: "**", component: NotFoundComponent },
 ];
