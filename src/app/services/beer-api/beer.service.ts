@@ -10,11 +10,10 @@ export class BeerService {
   url = "https://api.punkapi.com/v2/beers";
   constructor(private http: HttpClient) {}
 
-  // public beer$ = this.http.get(`${this.url}`).pipe(share());
+  public beer$ = this.http.get(`${this.url}`).pipe(share());
 
   getBeers(): Observable<any> {
-    return this.http.get(`${this.url}`);
-    // return this.beer$;
+    // return this.http.get(`${this.url}`);
+    return this.beer$;
   }
-
 }

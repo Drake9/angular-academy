@@ -1,5 +1,8 @@
 import { BooksCountService } from "./../services/additional/books-count/books-count.service";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Subject } from "rxjs";
+import { filter, takeUntil } from "rxjs/operators";
+import { BeerService } from "../services/beer-api/beer.service";
 import { UserService } from "../services/user/user.service";
 
 @Component({
@@ -7,17 +10,21 @@ import { UserService } from "../services/user/user.service";
   templateUrl: "./navigation.component.html",
   styleUrls: ["./navigation.component.scss"]
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent implements OnInit, OnDestroy {
   userName: string;
   count: number;
-
+  beersLength: number;
+  unsubscribe$: Subject<void> = new Subject<void>();
+  
   constructor(
     private userService: UserService,
-    private booksCountService: BooksCountService
+    private booksCountService: BooksCountService,
+    private beerService: BeerService
   ) {}
 
   ngOnInit() {
     this.userNameListener();
+    this.getBeers();
   }
 
   private userNameListener() {
@@ -28,5 +35,22 @@ export class NavigationComponent implements OnInit {
 
     //approach with asyncPipe
     // this.userName$ = this.userService.userName$;
+  }
+
+  private getBeers() {
+    this.beerService
+      .getBeers()
+      .pipe(
+        filter((beers) => beers.length),
+        takeUntil(this.unsubscribe$)
+      )
+      .subscribe((beers) => {
+        this.beersLength = beers.length;
+      });
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }
