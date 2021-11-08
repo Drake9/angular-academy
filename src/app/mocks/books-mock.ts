@@ -2,7 +2,7 @@ import { BookItem } from "../models/book-item";
 
 export const booksList: BookItem[] = [
   {
-    id: 0,
+    id: 1,
     author: "Kolk Bessel van der",
     title: "Strach ucieleśniony",
   },
