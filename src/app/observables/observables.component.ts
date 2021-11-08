@@ -2,7 +2,7 @@ import { ActivatedRoute, ParamMap } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { fromEvent, interval, Observable, of } from "rxjs";
-import { map, take } from "rxjs/operators";
+import { filter, map, take } from "rxjs/operators";
 
 @Component({
   selector: "app-observables",
@@ -41,6 +41,13 @@ export class ObservablesComponent implements OnInit {
       }, 1000);
     });
 
+    const pipes$: Observable<number> = of(1, 2, 3).pipe(
+      map((value) => value * 2),
+      filter((value) => value > 5)
+    );
+
+
+
     // source$.subscribe((value: number) => console.log("source$", value));
 
     // click$.subscribe((value: Event) => console.log("click$", value));
@@ -66,5 +73,7 @@ export class ObservablesComponent implements OnInit {
     // urlParams$.subscribe((data: ParamMap) => console.log("urlParams$", data));
 
     // observable$.subscribe((data: number[]) => console.log("observable$", data));
+
+    // pipes$.subscribe((num: number) => console.log("pipes$", num));
   }
 }
