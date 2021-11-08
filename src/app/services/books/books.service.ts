@@ -17,7 +17,7 @@ export class BooksService {
     return of(booksList);
   }
 
-  getBook(id): BookItem {
+  getBook(id: number): BookItem {
     return booksList.find((book) => book.id === id);
   }
 }

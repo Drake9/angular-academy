@@ -4,18 +4,26 @@ import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Injectable({
-  providedIn: "root",
+  providedIn: "root"
 })
 export class BooksApiService {
   url = "http://localhost:3000";
 
+  constructor(private http: HttpClient) {}
+
   httpOptions = {
-    headers: new HttpHeaders({ "Content-Type": "application/json" }),
+    headers: new HttpHeaders({ "Content-Type": "application/json" })
   };
 
-  update(book: BookItem): Observable<any> {
-    return this.http.put(this.url, book, this.httpOptions);
+  getBooks(): Observable<any> {
+    return this.http.get(`${this.url}/books`);
   }
 
-  constructor(private http: HttpClient) {}
+  addBook(book: BookItem): Observable<any> {
+    return this.http.post(`${this.url}/books`, book);
+  }
+
+  removeBook(id: number) {
+    return this.http.delete(`${this.url}/books/${id}`);
+  }
 }
