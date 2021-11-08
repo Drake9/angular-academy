@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { BookItem } from "../models/book-item";
 import { BeerService } from "../services/beer-api/beer.service";
 import { BooksService } from "../services/books/books.service";
+import { UserService } from "../services/user/user.service";
 
 @Component({
   selector: "app-books-list",
@@ -13,11 +14,16 @@ export class BooksListComponent implements OnInit {
   books: BookItem[];
   books$: Observable<BookItem[]>;
   selectedId: number;
-
-  constructor(private booksService: BooksService) {}
+  userName$: Subject<string> = new Subject<string>();
+  constructor(
+    private booksService: BooksService,
+    private userService: UserService
+  ) {}
 
   ngOnInit() {
+    console.log("userNameListener");
     this.getBooksList();
+    this.userNameListener();
   }
 
   private getBooksList() {
@@ -28,5 +34,9 @@ export class BooksListComponent implements OnInit {
     //   .subscribe((books: BookItem[]) => {
     //     this.books = books;
     //   });
+  }
+
+  private userNameListener() {
+    this.userName$ = this.userService.userName$;
   }
 }

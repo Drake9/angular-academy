@@ -1,4 +1,4 @@
-<h2>Book List</h2>
+<h2>Book List <span *ngIf="userName$ | async"> of {{userName$ | async}}</span></h2>
 
 <ul>
   <li *ngFor="let book of books" [class.selected]="book.id === selectedId">
