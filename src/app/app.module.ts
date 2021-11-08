@@ -12,9 +12,11 @@ import { BookCategoriesComponent } from "./book-categories/book-categories.compo
 import { HttpClientModule } from "@angular/common/http";
 import { BeersListComponent } from "./beers-list/beers-list.component";
 import { ObservablesComponent } from "./observables/observables.component";
-import { UserPanelComponent } from './user-panel/user-panel.component';
-import { FormsModule } from "@angular/forms";
-import { FooterComponent } from './footer/footer.component';
+import { UserPanelComponent } from "./user-panel/user-panel.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FooterComponent } from "./footer/footer.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MyBooksComponent } from "./additional-components/my-books/my-books.component";
 
 @NgModule({
   declarations: [
@@ -28,11 +30,19 @@ import { FooterComponent } from './footer/footer.component';
     BookCategoriesComponent,
     BeersListComponent,
     ObservablesComponent,
-      UserPanelComponent,
-      FooterComponent
-   ],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule],
+    UserPanelComponent,
+    FooterComponent,
+    MyBooksComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule
+  ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
