@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { Subject } from "rxjs";
+import { UserService } from "../services/user/user.service";
 
 @Component({
   selector: "app-navigation",
@@ -6,7 +8,21 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./navigation.component.scss"],
 })
 export class NavigationComponent implements OnInit {
-  constructor() {}
+  userName: string;
+  
+  constructor(private userService: UserService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.userNameListener();
+  }
+
+  private userNameListener() {
+    //approach with subscription
+    this.userService.userName$.subscribe((name) => {
+      this.userName = name;
+    });
+
+    //approach with asyncPipe
+    // this.userName$ = this.userService.userName$;
+  }
 }
