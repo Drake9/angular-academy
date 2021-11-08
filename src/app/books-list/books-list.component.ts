@@ -21,7 +21,6 @@ export class BooksListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log("userNameListener");
     this.getBooksList();
     this.userNameListener();
   }
@@ -38,5 +37,9 @@ export class BooksListComponent implements OnInit {
 
   private userNameListener() {
     this.userName$ = this.userService.userName$;
+  }
+
+  bookSelected(book: BookItem) {
+    this.selectedId = book.id;
   }
 }

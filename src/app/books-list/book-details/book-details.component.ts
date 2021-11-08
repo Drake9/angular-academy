@@ -22,11 +22,12 @@ export class BookDetailsComponent implements OnInit {
 
   private getInitialBookId() {
     const id = this.route.snapshot.params.id;
+    this.selectedBook = this.booksService.getBook(Number(id));
   }
 
   private bookListener() {
     this.route.paramMap.subscribe((params: ParamMap) => {
-      this.selectedBook = this.booksService.getBook(params.get("id"));
+      this.selectedBook = this.booksService.getBook(Number(params.get("id")));
     });
   }
 }
