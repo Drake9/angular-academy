@@ -1,3 +1,4 @@
+import { UserPanelComponent } from './user-panel/user-panel.component';
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { BeersListComponent } from "./beers-list/beers-list.component";
@@ -15,6 +16,7 @@ const routes: Routes = [
   },
   { path: "categories", component: BookCategoriesComponent },
   { path: "beers", component: BeersListComponent },
+  { path: "user", component: UserPanelComponent },
   { path: "", component: WelcomeComponent, pathMatch: "full" },
   { path: "**", component: NotFoundComponent },
 ];

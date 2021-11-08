@@ -12,6 +12,9 @@ import { BookCategoriesComponent } from "./book-categories/book-categories.compo
 import { HttpClientModule } from "@angular/common/http";
 import { BeersListComponent } from "./beers-list/beers-list.component";
 import { ObservablesComponent } from "./observables/observables.component";
+import { UserPanelComponent } from './user-panel/user-panel.component';
+import { FormsModule } from "@angular/forms";
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -25,8 +28,10 @@ import { ObservablesComponent } from "./observables/observables.component";
     BookCategoriesComponent,
     BeersListComponent,
     ObservablesComponent,
-  ],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
+      UserPanelComponent,
+      FooterComponent
+   ],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
