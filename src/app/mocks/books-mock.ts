@@ -16,20 +16,20 @@ export const booksList: BookItem[] = [
     author: "Lutz Mark",
     title: "Python. Wprowadzenie. Wydanie V",
   },
-  {
-    id: 4,
-    author: "Bhargava Aditya",
-    title: "Algorytmy. Ilustrowany przewodnik",
-  },
-  {
-    id: 5,
-    author: "Lanier Jaron",
-    title:
-      "Dziesięć powodów, dla których powinieneś natychmiast usunąć swoje konta z mediów społecznościowych",
-  },
-  {
-    id: 6,
-    author: "McKeown Greg",
-    title: "Esencjalista",
-  },
+  // {
+  //   id: 4,
+  //   author: "Bhargava Aditya",
+  //   title: "Algorytmy. Ilustrowany przewodnik",
+  // },
+  // {
+  //   id: 5,
+  //   author: "Lanier Jaron",
+  //   title:
+  //     "Dziesięć powodów, dla których powinieneś natychmiast usunąć swoje konta z mediów społecznościowych",
+  // },
+  // {
+  //   id: 6,
+  //   author: "McKeown Greg",
+  //   title: "Esencjalista",
+  // },
 ];
