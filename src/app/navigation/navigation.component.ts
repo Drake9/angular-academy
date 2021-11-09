@@ -8,7 +8,7 @@ import { UserService } from "../services/user/user.service";
 @Component({
   selector: "app-navigation",
   templateUrl: "./navigation.component.html",
-  styleUrls: ["./navigation.component.scss"]
+  styleUrls: ["./navigation.component.scss"],
 })
 export class NavigationComponent implements OnInit, OnDestroy {
   userName: string;
@@ -42,10 +42,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
   private getBeers() {
     this.beerService
       .getBeers()
-      .pipe(
-        filter((beers) => beers.length),
-        takeUntil(this.unsubscribe$)
-      )
+      .pipe(filter((beers) => beers.length))
       .subscribe((beers) => {
         this.beersLength = beers.length;
       });

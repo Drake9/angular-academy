@@ -1,18 +1,21 @@
 import { BooksCountService } from "./../../services/additional/books-count/books-count.service";
 import { BookItem } from "./../../models/book-item";
 import { BooksApiService } from "./../../services/books-api/books-api.service";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 
 @Component({
   selector: "app-my-books",
   templateUrl: "./my-books.component.html",
-  styleUrls: ["./my-books.component.scss"]
+  styleUrls: ["./my-books.component.scss"],
 })
-export class MyBooksComponent implements OnInit {
+export class MyBooksComponent implements OnInit, OnDestroy {
   books: BookItem[];
   booksCount$: Subject<number> = new Subject<number>();
+  unsubscribe$: Subject<void> = new Subject<void>();
+
   constructor(
     private bookApiService: BooksApiService,
     private booksCountService: BooksCountService
@@ -20,7 +23,7 @@ export class MyBooksComponent implements OnInit {
 
   form = new FormGroup({
     title: new FormControl("", Validators.required),
-    author: new FormControl("")
+    author: new FormControl(""),
   });
 
   ngOnInit() {
@@ -29,7 +32,6 @@ export class MyBooksComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form.value);
     this.bookApiService.addBook(this.form.value).subscribe(() => {
       // First approach
       // this.books.push(book);
@@ -40,21 +42,23 @@ export class MyBooksComponent implements OnInit {
   }
 
   formListener() {
-    this.form.valueChanges.subscribe(value => {
-      // console.log(value);
-    });
+    this.form.valueChanges
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((value) => {
+        // console.log(value);
+      });
   }
 
   private getAllBooks() {
-    this.bookApiService.getBooks().subscribe(books => {
+    this.bookApiService.getBooks().subscribe((books) => {
       this.books = books;
       this.updateCountOfBooks();
     });
   }
 
   remove(id: number) {
-    this.bookApiService.removeBook(id).subscribe(books => {
-      this.books = this.books.filter(book => book.id !== id);
+    this.bookApiService.removeBook(id).subscribe((books) => {
+      this.books = this.books.filter((book) => book.id !== id);
       this.updateCountOfBooks();
     });
   }
@@ -62,5 +66,10 @@ export class MyBooksComponent implements OnInit {
   updateCountOfBooks() {
     const count = this.books.length;
     this.booksCountService.updateCountOfBooks(count);
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }
