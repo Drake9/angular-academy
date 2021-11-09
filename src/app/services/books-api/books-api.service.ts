@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class BooksApiService {
   url = "http://localhost:3000";
@@ -12,11 +12,15 @@ export class BooksApiService {
   constructor(private http: HttpClient) {}
 
   httpOptions = {
-    headers: new HttpHeaders({ "Content-Type": "application/json" })
+    headers: new HttpHeaders({ "Content-Type": "application/json" }),
   };
 
   getBooks(): Observable<any> {
     return this.http.get(`${this.url}/books`);
+  }
+
+  getBook(id: number): Observable<any> {
+    return this.http.get(`${this.url}/books/${id}`);
   }
 
   addBook(book: BookItem): Observable<any> {
