@@ -1,16 +1,18 @@
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
-import { Component, OnInit } from "@angular/core";
-import { fromEvent, interval, Observable, of } from "rxjs";
-import { filter, map, take } from "rxjs/operators";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { fromEvent, interval, Observable, of, Subject } from "rxjs";
+import { filter, map, take, takeUntil } from "rxjs/operators";
 
 @Component({
   selector: "app-observables",
   templateUrl: "./observables.component.html",
   styleUrls: ["./observables.component.scss"],
 })
-export class ObservablesComponent implements OnInit {
+export class ObservablesComponent implements OnInit, OnDestroy {
   url = "https://api.punkapi.com/v2/beers";
+  unsubscribe$: Subject<void> = new Subject<void>();
+
   constructor(private http: HttpClient, private route: ActivatedRoute) {}
 
   ngOnInit() {
@@ -46,15 +48,15 @@ export class ObservablesComponent implements OnInit {
       filter((value) => value > 5)
     );
 
-
-
     // source$.subscribe((value: number) => console.log("source$", value));
 
-    // click$.subscribe((value: Event) => console.log("click$", value));
+    // click$
+    //   .pipe(takeUntil(this.unsubscribe$))
+    //   .subscribe((value: Event) => console.log("click$", value));
 
-    // clickString$.subscribe((value: string) =>
-    //   console.log("clickString$", value)
-    // );
+    // clickString$
+    //   .pipe(takeUntil(this.unsubscribe$))
+    //   .subscribe((value: string) => console.log("clickString$", value));
 
     // apiResponse$.subscribe(
     //   (value) => {
@@ -75,5 +77,10 @@ export class ObservablesComponent implements OnInit {
     // observable$.subscribe((data: number[]) => console.log("observable$", data));
 
     // pipes$.subscribe((num: number) => console.log("pipes$", num));
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

@@ -15,7 +15,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
   count: number;
   beersLength: number;
   unsubscribe$: Subject<void> = new Subject<void>();
-  
+
   constructor(
     private userService: UserService,
     private booksCountService: BooksCountService,
@@ -29,9 +29,11 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
   private userNameListener() {
     //approach with subscription
-    this.userService.userName$.subscribe(name => {
-      this.userName = name;
-    });
+    this.userService.userName$
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((name) => {
+        this.userName = name;
+      });
 
     //approach with asyncPipe
     // this.userName$ = this.userService.userName$;
