@@ -1,6 +1,7 @@
-import { BooksCountService } from "./../../services/additional/books-count/books-count.service";
-import { BookItem } from "./../../models/book-item";
-import { BooksApiService } from "./../../services/books-api/books-api.service";
+import { BooksCountService } from "./../../../services/additional/books-count/books-count.service";
+import { BooksApiService } from "./../../../services/books-api/books-api.service";
+import { BookItem } from "./../../../models/book-item";
+
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Subject } from "rxjs";

@@ -1,6 +1,6 @@
+import { BeerService } from "./../../services/beer-api/beer.service";
+import { BeerItem } from "./../../models/beer-item";
 import { Component, OnInit } from "@angular/core";
-import { BeerItem } from "../models/beer-item";
-import { BeerService } from "../services/beer-api/beer.service";
 
 @Component({
   selector: "app-beers-list",

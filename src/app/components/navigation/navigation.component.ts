@@ -1,9 +1,9 @@
-import { BooksCountService } from "./../services/additional/books-count/books-count.service";
+import { BooksCountService } from "../../services/additional/books-count/books-count.service";
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subject } from "rxjs";
 import { filter, takeUntil } from "rxjs/operators";
-import { BeerService } from "../services/beer-api/beer.service";
-import { UserService } from "../services/user/user.service";
+import { BeerService } from "../../services/beer-api/beer.service";
+import { UserService } from "../../services/user/user.service";
 
 @Component({
   selector: "app-navigation",

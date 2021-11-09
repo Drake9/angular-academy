@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subject } from "rxjs";
-import { UserService } from "../services/user/user.service";
+import { UserService } from "../../services/user/user.service";
 
 @Component({
   selector: "app-footer",

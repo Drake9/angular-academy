@@ -1,4 +1,4 @@
-import { BookItem } from "../../models/book-item";
+import { BookItem } from "./../../../models/book-item";
 import { Component, Input, OnInit } from "@angular/core";
 
 @Component({

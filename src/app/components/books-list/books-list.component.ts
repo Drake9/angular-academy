@@ -1,9 +1,8 @@
+import { BookItem } from "./../../models/book-item";
+import { UserService } from "./../../services/user/user.service";
+import { BooksService } from "./../../services/books/books.service";
 import { Component, OnInit } from "@angular/core";
 import { Observable, Subject } from "rxjs";
-import { BookItem } from "../models/book-item";
-import { BeerService } from "../services/beer-api/beer.service";
-import { BooksService } from "../services/books/books.service";
-import { UserService } from "../services/user/user.service";
 
 @Component({
   selector: "app-books-list",

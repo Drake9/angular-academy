@@ -1,5 +1,5 @@
-import { BooksService } from "./../../services/books/books.service";
-import { BookItem } from "./../../models/book-item";
+import { BooksService } from "./../../../services/books/books.service";
+import { BookItem } from "./../../../models/book-item";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 
