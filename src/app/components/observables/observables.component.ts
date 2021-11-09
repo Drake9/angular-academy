@@ -18,9 +18,9 @@ export class ObservablesComponent implements OnInit, OnDestroy {
   ngOnInit() {
     console.log("--------------------Observable logs-------------------------");
 
-    const numbers$: Observable<number[]> = of([1, 2, 3]);
+    const numbersFromOf$: Observable<number[]> = of([1, 2, 3]);
 
-    const source$: Observable<number> = interval(1000).pipe(take(5));
+    const interval$: Observable<number> = interval(1000).pipe(take(5));
 
     const click$: Observable<Event> = fromEvent(document, "click");
 
@@ -28,7 +28,8 @@ export class ObservablesComponent implements OnInit, OnDestroy {
       map((event) => `Event time: ${event.timeStamp}`)
     );
 
-    const apiResponse$: Observable<any> = this.http.get(`${this.url}`);
+    const apiResponse$: Observable<any> = this.http.get(`${this.url}/3`);
+    // make a mistake in URL
 
     const urlParams$: Observable<ParamMap> = this.route.paramMap;
 
@@ -40,7 +41,8 @@ export class ObservablesComponent implements OnInit, OnDestroy {
       setTimeout(() => {
         subscriber.next(4);
         subscriber.complete();
-      }, 1000);
+      }, 5000);
+
     });
 
     const pipes$: Observable<number> = of(1, 2, 3).pipe(
@@ -48,7 +50,7 @@ export class ObservablesComponent implements OnInit, OnDestroy {
       filter((value) => value > 5)
     );
 
-    // source$.subscribe((value: number) => console.log("source$", value));
+    // interval$.subscribe((value: number) => console.log("interval$", value));
 
     // click$
     //   .pipe(takeUntil(this.unsubscribe$))
@@ -60,7 +62,7 @@ export class ObservablesComponent implements OnInit, OnDestroy {
 
     // apiResponse$.subscribe(
     //   (value) => {
-    //     console.log("Received value: ", value);
+    //     console.log("Received value: beers: ", value);
     //   },
     //   (error) => {
     //     console.log("Error!!", error);
@@ -70,7 +72,7 @@ export class ObservablesComponent implements OnInit, OnDestroy {
     //   }
     // );
 
-    // numbers$.subscribe((data: number[]) => console.log("numbers$", data));
+    // numbersFromOf$.subscribe((data: number[]) => console.log("numbersFromOf$", data));
 
     // urlParams$.subscribe((data: ParamMap) => console.log("urlParams$", data));
 

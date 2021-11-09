@@ -3,8 +3,8 @@ import { BooksApiService } from "./../../../services/books-api/books-api.service
 import { BooksService } from "./../../../services/books/books.service";
 import { BookItem } from "./../../../models/book-item";
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, ParamMap } from "@angular/router";
-import { mergeMap } from "rxjs/operators";
+import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+import { concatMap } from "rxjs/operators";
 
 @Component({
   selector: "app-book-details",
@@ -16,13 +16,14 @@ export class BookDetailsComponent implements OnInit {
   category: string;
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private booksService: BooksService,
     private booksApiService: BooksApiService,
     private categoriesService: CategoriesService
   ) {}
 
   ngOnInit() {
-    this.getInitialBookId();
+    // this.getInitialBookId();
     this.bookListener();
   }
 
@@ -32,16 +33,24 @@ export class BookDetailsComponent implements OnInit {
   }
 
   private bookListener() {
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      this.selectedBook = this.booksService.getBook(Number(params.get("id")));
-    });
+    // avoid subscription in subscription
+    // this.route.paramMap.subscribe((params: ParamMap) => {
+    //   this.selectedBook = this.booksService.getBook(Number(params.get("id")));
+    //   this.categoriesService.getCategory(this.selectedBook.category).subscribe(category => {
+    //     this.category = category.name;
+    //   });
+    // });
+
 
     this.route.paramMap
       .pipe(
-        mergeMap((params: ParamMap) => {
+        concatMap((params: ParamMap) => {
+          if (!params.get("id")) {
+            return;
+          }
           return this.booksApiService.getBook(Number(params.get("id")));
         }),
-        mergeMap(book => {
+        concatMap(book => {
           this.selectedBook = book;
           return this.categoriesService.getCategory(book.category);
         })

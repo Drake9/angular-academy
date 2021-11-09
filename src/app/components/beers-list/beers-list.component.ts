@@ -18,6 +18,9 @@ export class BeersListComponent implements OnInit {
   private beersListListener() {
     this.beerService.getBeers().subscribe((beers: BeerItem[]) => {
       this.beers = beers;
+    },
+    (error) => {
+      console.error(error);
     });
   }
 }

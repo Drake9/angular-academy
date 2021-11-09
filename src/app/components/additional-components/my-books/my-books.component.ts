@@ -39,7 +39,10 @@ export class MyBooksComponent implements OnInit, OnDestroy {
 
       //Second, make a call for all books
       this.getAllBooks();
+       // mehod
     });
+
+
   }
 
   formListener() {
