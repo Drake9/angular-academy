@@ -9,7 +9,7 @@ import { mergeMap } from "rxjs/operators";
 @Component({
   selector: "app-book-details",
   templateUrl: "./book-details.component.html",
-  styleUrls: ["./book-details.component.scss"],
+  styleUrls: ["./book-details.component.scss"]
 })
 export class BookDetailsComponent implements OnInit {
   selectedBook: BookItem;
@@ -36,19 +36,18 @@ export class BookDetailsComponent implements OnInit {
       this.selectedBook = this.booksService.getBook(Number(params.get("id")));
     });
 
-    // this.route.paramMap
-    //   .pipe(
-    //     mergeMap((params: ParamMap) => {
-    //       return this.booksApiService.getBook(Number(params.get("id")));
-    //     }),
-    //     mergeMap((book) => {
-    //       this.selectedBook = book;
-    //       return this.categoriesService.getCategory(book.category);
-    //     })
-    //   )
-    //   .subscribe((category) => {
-    //     console.log(category);
-    //     this.category = category;
-    //   });
+    this.route.paramMap
+      .pipe(
+        mergeMap((params: ParamMap) => {
+          return this.booksApiService.getBook(Number(params.get("id")));
+        }),
+        mergeMap(book => {
+          this.selectedBook = book;
+          return this.categoriesService.getCategory(book.category);
+        })
+      )
+      .subscribe(category => {
+        this.category = category.name;
+      });
   }
 }

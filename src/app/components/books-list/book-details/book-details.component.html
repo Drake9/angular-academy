@@ -1,11 +1,11 @@
-<div *ngIf="selectedBook">
-  <h2>Book's details</h2>
+<div class="book-details" *ngIf="selectedBook">
+  <h3>Book's details</h3>
 
-  <p>Title: {{selectedBook.title}}</p>
+  <p>Title: {{ selectedBook.title }}</p>
 
-  <p>Author: {{selectedBook.author}}</p>
+  <p>Author: {{ selectedBook.author }}</p>
 
-  <p>Id: {{selectedBook.id}}</p>
+  <p>Id: {{ selectedBook.id }}</p>
+
+  <p>Category: {{ category }}</p>
 </div>
-
-
