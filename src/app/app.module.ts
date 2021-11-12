@@ -17,6 +17,7 @@ import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { UserPanelComponent } from "./components/user-panel/user-panel.component";
 import { BeersListComponent } from "./components/beers-list/beers-list.component";
 import { MyBooksComponent } from "./components/additional-components/my-books/my-books.component";
+import { FavouritesBooksComponent } from './components/favourites-books/favourites-books.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MyBooksComponent } from "./components/additional-components/my-books/my
     UserPanelComponent,
     FooterComponent,
     MyBooksComponent,
+    FavouritesBooksComponent,
   ],
   imports: [
     BrowserModule,

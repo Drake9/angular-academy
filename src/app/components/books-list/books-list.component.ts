@@ -13,7 +13,7 @@ export class BooksListComponent implements OnInit {
   books: BookItem[];
   books$: Observable<BookItem[]>;
   selectedId: number;
-  userName$: Subject<string> = new Subject<string>();
+  // userName$: Subject<string> = new Subject<string>();
   constructor(
     private booksService: BooksService,
     private userService: UserService
@@ -35,7 +35,7 @@ export class BooksListComponent implements OnInit {
   }
 
   private userNameListener() {
-    this.userName$ = this.userService.userName$;
+    // this.userName$ = this.userService.userName$;
   }
 
   bookSelected(book: BookItem) {

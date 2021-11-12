@@ -28,9 +28,6 @@ export class ObservablesComponent implements OnInit, OnDestroy {
       map((event) => `Event time: ${event.timeStamp}`)
     );
 
-    const apiResponse$: Observable<any> = this.http.get(`${this.url}/3`);
-    // make a mistake in URL
-
     const urlParams$: Observable<ParamMap> = this.route.paramMap;
 
     const observable$ = new Observable((subscriber) => {
@@ -59,6 +56,9 @@ export class ObservablesComponent implements OnInit, OnDestroy {
     // clickString$
     //   .pipe(takeUntil(this.unsubscribe$))
     //   .subscribe((value: string) => console.log("clickString$", value));
+
+
+    // const apiResponse$: Observable<any> = this.http.get(`${this.url}/3`);
 
     // apiResponse$.subscribe(
     //   (value) => {
