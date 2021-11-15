@@ -1,6 +1,6 @@
 import { BookItem } from "./../../models/book-item";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Injectable({
@@ -20,6 +20,12 @@ export class BooksApiService {
   }
 
   getBook(id: number): Observable<any> {
+    // return of({
+    //   title: "Diuna",
+    //   author: "",
+    //   id: 8,
+    //   category: 2,
+    // });
     return this.http.get(`${this.url}/books/${id}`);
   }
 
