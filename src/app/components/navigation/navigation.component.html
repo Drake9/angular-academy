@@ -11,6 +11,10 @@
         <span *ngIf="beersLength" class="beer-count">{{ beersLength }}</span></a
       >
     </li>
+    <li>|</li>
+    <li><a routerLink="/persons">Persons</a></li>
+    <li>|</li>
+    <li><a routerLink="/universities">Universities</a></li>
     <li *ngIf="count">My books{{ count }}</li>
     <li class="user">
       <a routerLink="/user">User: {{ userName }} </a>

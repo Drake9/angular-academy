@@ -1,3 +1,4 @@
+import { PersonsListComponent } from './persons-list/persons-list.component';
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { MyBooksComponent } from "./components/additional-components/my-books/my-books.component";
@@ -9,6 +10,7 @@ import { FavouritesBooksComponent } from "./components/favourites-books/favourit
 import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { UserPanelComponent } from "./components/user-panel/user-panel.component";
 import { WelcomeComponent } from "./components/welcome/welcome.component";
+import { UniversitiesListComponent } from './universities-list/universities-list.component';
 
 const routes: Routes = [
   {
@@ -21,6 +23,8 @@ const routes: Routes = [
   { path: "user", component: UserPanelComponent },
   { path: "favourites", component: FavouritesBooksComponent },
   { path: "my-books", component: MyBooksComponent },
+  { path: "persons", component: PersonsListComponent },
+  { path: "universities", component: UniversitiesListComponent },
   { path: "", component: WelcomeComponent, pathMatch: "full" },
   { path: "**", component: NotFoundComponent },
 ];
