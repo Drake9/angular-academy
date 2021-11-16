@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { catchError, share } from "rxjs/operators";
+import { Person } from "src/app/models/Person";
 
 @Injectable({
   providedIn: "root",
@@ -20,5 +21,9 @@ export class PersonsService {
         return throwError(error.message);
       }));
     // return this.beer$;
+  }
+
+  addPerson(person: Person) {
+    return this.http.post(`http://localhost:42264/api/Persons`, person);
   }
 }
